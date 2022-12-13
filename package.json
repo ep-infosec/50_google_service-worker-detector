@@ -1,0 +1,55 @@
+{
+  "name": "service-worker-detector",
+  "version": "2.4.0",
+  "description": "This extension detects if a website registers a Service Worker.",
+  "main": "background.js",
+  "scripts": {
+    "copy": "shx rm -rf ./third_party && shx mkdir ./third_party && shx cp ./node_modules/js-beautify/js/lib/beautifier.min.js ./third_party/ && shx cp ./node_modules/prismjs/prism.js ./third_party/ && shx cp ./node_modules/prismjs/themes/prism.css ./third_party/ && shx cp ./node_modules/esprima/dist/esprima.js ./third_party/",
+    "fix": "npx prettier --write .",
+    "lint": "npx eslint . --fix && npx stylelint \"**/*.css\"",
+    "prepare": "npm run copy && npm run fix && npm run lint",
+    "safari": "xcrun safari-web-extension-converter . --project-location ../safari-extensions/service-worker-detector --copy-resources --swift --force --bundle-identifier com.google.googlechromelabs.service-worker-detector"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/google/service-worker-detector.git"
+  },
+  "author": "Thomas Steiner <steiner.thomas@gmail.com> (http://blog.tomayac.com/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/google/service-worker-detector/issues"
+  },
+  "homepage": "https://github.com/google/service-worker-detector#readme",
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.14.0",
+    "esprima": "^4.0.1",
+    "js-beautify": "^1.13.0",
+    "prettier": "^2.1.2",
+    "prismjs": "^1.27.0",
+    "shx": "^0.3.3",
+    "stylelint-csstree-validator": "^1.9.0"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "extends": [
+      "google",
+      "prettier"
+    ]
+  },
+  "stylelint": {
+    "plugins": [
+      "stylelint-csstree-validator"
+    ],
+    "rules": {
+      "csstree/validator": true
+    }
+  },
+  "dependencies": {
+    "stylelint": "^13.7.2"
+  }
+}
